@@ -16,7 +16,6 @@ import jakarta.persistence.Table;
 public class Orden {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Anotacion JPA
-
 	private Integer id;
 	private String numero; 
 	private Date fechacreacion;
