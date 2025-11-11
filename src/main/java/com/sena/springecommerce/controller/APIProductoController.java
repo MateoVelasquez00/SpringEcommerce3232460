@@ -63,7 +63,7 @@ public class APIProductoController {
 			return ResponseEntity.notFound().build();
 		}
 		Producto existingProducto = producto.get();
-		existingProducto.setNombre(productDetails.getDescripcion());
+		existingProducto.setNombre(productDetails.getNombre());
 		existingProducto.setDescripcion(productDetails.getDescripcion());
 		existingProducto.setPrecio(productDetails.getPrecio());
 		existingProducto.setCantidad(productDetails.getCantidad());
@@ -78,7 +78,7 @@ public class APIProductoController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Integer id){
 		Optional<Producto> producto = productosService.get(id);
-		if (!producto.isEmpty()) {
+		if (!producto.isPresent()) {
 			return ResponseEntity.notFound().build();	
 			}
 		Producto p = producto.get();
