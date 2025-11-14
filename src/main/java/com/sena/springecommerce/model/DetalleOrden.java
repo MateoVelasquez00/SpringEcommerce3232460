@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -14,21 +15,23 @@ public class DetalleOrden {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // Anotacion JPA
 	private Integer id;
 	private String nombre;
-	private Double cantidad;
+	private Integer cantidad;
 	private Double precio;
 	private Double total;
 	
 	@ManyToOne
+	@JoinColumn(name = "orden_id")
 	private Orden orden;
 	
 	@ManyToOne 
+	@JoinColumn(name = "producto_id")
 	private Producto producto;
 
 	public DetalleOrden() {
 
 	}
 
-	public DetalleOrden(Integer id, String nombre, Double cantidad, Double precio, Double total) {
+	public DetalleOrden(Integer id, String nombre, Integer cantidad, Double precio, Double total) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -53,11 +56,11 @@ public class DetalleOrden {
 		this.nombre = nombre;
 	}
 
-	public Double getCantidad() {
+	public Integer getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidad(Double cantidad) {
+	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
 

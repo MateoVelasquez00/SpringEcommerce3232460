@@ -51,6 +51,7 @@ public class APIProductoController {
 		if (producto.getImagen() == null) {
 			producto.setImagen("default.jpg");
 		}
+		
 		Producto savedProduct = productosService.save(producto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
 	}

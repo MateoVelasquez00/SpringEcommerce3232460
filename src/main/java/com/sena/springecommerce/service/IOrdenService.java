@@ -15,6 +15,9 @@ public interface IOrdenService {
 	public List<Orden> findByUsuarios(Usuario usuario);
 
 	public Optional<Orden> findById(Integer id);
+	
+	public void delete(Integer id);
 
 	public String generarNumeroOrden();
+
 }

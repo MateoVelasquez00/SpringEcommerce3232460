@@ -50,8 +50,10 @@ public class OrdenServiceImplement implements IOrdenService {
 		List<Integer> numeros = new ArrayList<>();
 		// Funciones java 8
 		// Variable Anonima
-		ordenes.stream().forEach(o -> numeros.add(Integer.parseInt(o.getNumero())));
-		if (ordenes.isEmpty()) {
+		ordenes.stream() .filter(o -> o.getNumero() != null && !o.getNumero().isEmpty()) //Evita nulos
+        .forEach(o -> numeros.add(Integer.parseInt(o.getNumero())));
+		
+		if (ordenes.isEmpty()){
 			numero = 1;
 		} else {
 			numero = numeros.stream().max(Integer::compare).get();
@@ -68,6 +70,12 @@ public class OrdenServiceImplement implements IOrdenService {
 			numeroConcatenado = "0000000000" + String.valueOf(numero);
 		}
 		return numeroConcatenado;
+	}
+
+	@Override
+	public void delete(Integer id) {
+		// TODO Auto-generated method stub
+		ordenRepository.deleteById(id);
 	}
 
 }
